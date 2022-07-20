@@ -1,31 +1,21 @@
 <script setup>
-import axios from "axios";
-import { ref, computed } from 'vue'
+import { ref, computed } from "vue";
 import orderBy from "lodash/orderby";
+import { useFetchAllCharacters } from "@/composables/useFetchAllCharacters";
 
-const characters = ref([])
-const loadingState = ref(null)
-const orderKey = ref("id")
+// fetching characters
+const { characters, loadingState, fetchAllCharacters } = useFetchAllCharacters();
 
-const charactersOrdered = computed(() => orderBy(characters.value, orderKey.value))
+fetchAllCharacters();
 
+// sorting/ordering characters
+const orderKey = ref("id");
+const charactersOrdered = computed(() =>
+  orderBy(characters.value, orderKey.value)
+);
 function setOrderKey(key) {
   orderKey.value = key;
 }
-
-function fetchAllCharacters() {
-  loadingState.value = "loading";
-  axios
-    .get("https://rickandmortyapi.com/api/character")
-    .then((response) => {
-      setTimeout(() => {
-        loadingState.value = "success";
-        characters.value = response.data.results;
-      }, 1000);
-    });
-}
-
-fetchAllCharacters()
 </script>
 
 <template>
