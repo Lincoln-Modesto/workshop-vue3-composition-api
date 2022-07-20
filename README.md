@@ -1,8 +1,10 @@
 # workshop-vue-3-composition-api
 
-This template should help get you started developing with Vue 3 in Vite.
+## Vue School - workshop Vue 3 Composition Api
 
 [Exercises](https://vueschool.notion.site/Exercises-d0f485e569464b949c081208df12b3d9)
+
+This template should help get you started developing with Vue 3 in Vite.
 
 ## Recommended IDE Setup
 
@@ -35,3 +37,5 @@ npm run build
 ```sh
 npm run lint
 ```
+### workshop
+![](/src/assets/workshop.png)
