@@ -1,9 +1,17 @@
 <script setup>
 import axios from "axios";
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
+import orderBy from "lodash/orderby";
 
 const characters = ref([])
 const loadingState = ref(null)
+const orderKey = ref("id")
+
+const charactersOrdered = computed(() => orderBy(characters.value, orderKey.value))
+
+function setOrderKey(key) {
+  orderKey.value = key;
+}
 
 function fetchAllCharacters() {
   loadingState.value = "loading";
@@ -18,28 +26,6 @@ function fetchAllCharacters() {
 }
 
 fetchAllCharacters()
-</script>
-
-<script>
-
-import orderBy from "lodash/orderby";
-export default {
-  data() {
-    return {
-      orderKey: "id"
-    }
-  },
-  computed: {
-    charactersOrdered() {
-      return orderBy(this.characters, this.orderKey);
-    },
-  },
-  methods: {
-    setOrderKey(key) {
-      this.orderKey = key;
-    },
-  }
-};
 </script>
 
 <template>
